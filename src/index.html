@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Konrad Gorski" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <title>Hangman</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body ng-app="HangmanApp" ng-controller="GameController">
+    <div class="container">
+      <header class="page-header text-center">
+        <h1>Play the <strong>Hangman</strong></h1>
+      </header>
+      <section class="score" ng-hide="win || loose">
+        <h3>Guess the word</h3>
+        <strong id="attempts"
+          >You have {{ attempt }} attempts.
+          <span ng-show="miss > 0"
+            >You missed {{ miss }} {{ grammar() }}</span
+          ></strong
+        >
+      </section>
+
+      <section class="controls">
+        <div
+          class="alert"
+          ng-show="win || loose"
+          ng-class="{'alert-info': win, 'alert-warning': loose}"
+        >
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-hidden="true"
+          >
+            &times;
+          </button>
+          <h2 ng-show="win">You won</h2>
+          <h2 ng-show="loose">
+            You lost
+            <small
+              >Password is <em>{{ password.toLowerCase() }}</em></small
+            >
+          </h2>
+          <hr />
+          <button type="button" class="btn btn-primary" ng-click="startGame()">
+            Play once more
+          </button>
+        </div>
+        <div class="row">
+          <div class="col-sm-4 offset-sm-2">
+            <div class="hangman-img">
+              <img ng-src="{{ img }}" alt="" class="img-fluid" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <section class="guess-area">
+              <p>{{ hiddenPassword }}</p>
+            </section>
+            <div class="letters">
+              <h4>Choose the letter</h4>
+
+              <button
+                class="btn"
+                ng-repeat="letter in alphabet"
+                ng-click="check(letter)"
+                ng-disabled="letter.selected"
+                ng-class="{'btn-primary': letter.status === null, 'btn-success': letter.status === 'ok', 'btn-danger': letter.status === 'wrong'}"
+              >
+                {{ letter.name }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

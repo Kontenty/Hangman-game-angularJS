@@ -1,0 +1,32 @@
+.page-header {
+  color: white;
+  text-shadow: 1px 1px 5px #000;
+}
+
+.score {
+  text-align: center;
+}
+
+.guess-area {
+  font-family: "courier new", monospace;
+  letter-spacing: 1px;
+  font-size: 2em;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+.letters .btn {
+  width: 38px;
+  height: 38px;
+  margin: 2px;
+}
+
+.alert {
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .guess-area {
+    text-align: center;
+  }
+}
