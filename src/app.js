@@ -10,6 +10,7 @@ import { words } from "./words";
       let imgNo = 1;
       $scope.hiddenPassword = "";
 
+      // setup the game
       $scope.startGame = function() {
         $scope.password = words[
           Math.floor(Math.random() * words.length)
@@ -24,16 +25,15 @@ import { words } from "./words";
         $scope.miss = 0;
         $scope.win = false;
         $scope.loose = false;
-        let tempPass = "";
-        for (var i = 0; i < $scope.password.length; i++) {
-          tempPass += "-";
-        }
-        $scope.hiddenPassword = tempPass;
+        $scope.hiddenPassword = Array.prototype.map
+          .call($scope.password, letter => "-")
+          .join("");
       };
 
+      // check choosen letter
       $scope.check = letter => {
         letter.selected = true;
-        for (var i = 0; i < $scope.password.length; i++) {
+        for (let i = 0; i < $scope.password.length; i++) {
           if (letter.name === $scope.password[i]) {
             if (i > 0) {
               $scope.hiddenPassword = [
@@ -54,12 +54,12 @@ import { words } from "./words";
             }
           }
         }
-
+        // letter is incorrect
         if ($scope.password.search(letter.name) === -1) {
           $scope.attempt -= 1;
           $scope.miss += 1;
           imgNo += 1;
-          $scope.img = "img/hangman" + imgNo + ".jpg";
+          $scope.img = `img/hangman${imgNo}.jpg`;
           letter.status = "wrong";
           if ($scope.miss === 6) {
             $scope.loose = true;

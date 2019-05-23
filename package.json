@@ -1,23 +1,23 @@
 {
   "name": "hangman-game",
   "description": "hangman word game",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist/*.*",
     "dev": "parcel ./src/index.html",
-    "build": "parcel build ./src/index.html",
+    "build": "parcel build ./src/index.html -d build",
     "start": "npm run clean && npm run dev"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.11.0",
+    "parcel-bundler": "^1.12.3",
     "rimraf": "^2.6.3"
   },
   "dependencies": {
-    "angular": "^1.7.7",
+    "angular": "^1.7.8",
     "bootstrap": "^4.3.1",
-    "jquery": "^3.3.1",
-    "popper.js": "^1.14.7"
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0"
   }
 }
